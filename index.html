@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MAXAUT helps SMEs strengthen ERP foundations and use agentic AI to ask questions, access grounded information, and smooth operational handoffs.">
+  <meta name="theme-color" content="#f2f1ed">
+  <title>MAXAUT | ERP for the agentic age</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="interactions.js" defer></script>
+</head>
+<body>
+  <!--
+    THESIS: ERP is how the business operates; agentic AI connects its records, rules, decisions, and handoffs.
+    OWN-WORLD: Matte off-white, soft black, precise rules, and one cobalt signal moving through operational diagrams.
+    STORY: MAXAUT strengthens the ERP core, connects operational context with controlled agents, smooths the flow of work, and invites a discovery conversation.
+    FIRST VIEWPORT: A direct promise leads into one live order moving from ERP event through agent context, human control, and ERP update.
+    FORM: A living operational ledger carries the narrative from proposition to workflow to action; direction seed 5cddfe61.
+  -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="wordmark" href="#top" aria-label="MAXAUT home">
+      <span>MAX</span><strong>AUT</strong>
+    </a>
+    <nav class="primary-nav" aria-label="Primary navigation">
+      <a href="#capabilities">Capabilities</a>
+      <a href="#approach">Approach</a>
+      <a href="#principles">Principles</a>
+    </nav>
+    <a class="button button-dark header-action" href="#contact">Book a discovery call</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <canvas class="hero-waves" data-hero-waves aria-hidden="true"></canvas>
+      <div class="hero-copy">
+        <p class="hero-context">Modern ERP. Conversational access.</p>
+        <h1 id="hero-title">Your ERP is the substrate of your business.</h1>
+        <div class="hero-intro">
+          <p>It holds the records, rules, and workflows that shape how work gets done. Agents give your people a simpler way in: ask the ERP what is happening, why, and what needs attention, then move from the answer into controlled action.</p>
+          <div class="hero-actions">
+            <a class="button button-dark" href="#contact">Start a conversation</a>
+            <a class="text-link" href="#workflow">See how operations connect <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="operations-demo" data-operations-demo data-active-step="0" role="group" aria-label="Interactive order-to-cash operation">
+        <div class="demo-toolbar">
+          <div class="demo-identity">
+            <span class="live-dot" aria-hidden="true"></span>
+            <strong>Interactive operation</strong>
+            <span>Sales order SO-10482</span>
+          </div>
+          <span class="demo-hint"><i aria-hidden="true"></i> Hover, focus, or tap a stage</span>
+        </div>
+
+        <div class="demo-field">
+          <div class="data-ribbon" aria-hidden="true">
+            <span>08:42:12 · ERP event received</span>
+            <span>Account · Standard terms</span>
+            <span>Inventory · Available</span>
+            <span>Control · Approval required</span>
+          </div>
+
+          <div class="demo-path">
+            <div class="demo-progress-track" aria-hidden="true"><span></span></div>
+            <ol class="demo-steps">
+              <li class="demo-step is-current" data-demo-step="0">
+                <button class="demo-step-button" type="button" data-demo-target="0" aria-pressed="true">
+                  <span class="demo-node" aria-hidden="true"></span>
+                  <span class="demo-step-copy">
+                    <span>ERP record</span>
+                    <strong>Order received</strong>
+                    <small>SO-10482</small>
+                  </span>
+                </button>
+              </li>
+              <li class="demo-step" data-demo-step="1">
+                <button class="demo-step-button" type="button" data-demo-target="1" aria-pressed="false">
+                  <span class="demo-node" aria-hidden="true"></span>
+                  <span class="demo-step-copy">
+                    <span>Ask the ERP</span>
+                    <strong>Can this ship today?</strong>
+                    <small>Plain-language question</small>
+                  </span>
+                </button>
+              </li>
+              <li class="demo-step" data-demo-step="2">
+                <button class="demo-step-button" type="button" data-demo-target="2" aria-pressed="false">
+                  <span class="demo-node" aria-hidden="true"></span>
+                  <span class="demo-step-copy">
+                    <span>Grounded answer</span>
+                    <strong>Stock ready. Approval needed.</strong>
+                    <small>ERP context connected</small>
+                  </span>
+                </button>
+              </li>
+              <li class="demo-step" data-demo-step="3">
+                <button class="demo-step-button" type="button" data-demo-target="3" aria-pressed="false">
+                  <span class="demo-node" aria-hidden="true"></span>
+                  <span class="demo-step-copy">
+                    <span>Controlled action</span>
+                    <strong>Approval routed</strong>
+                    <small>Audit trail preserved</small>
+                  </span>
+                </button>
+              </li>
+            </ol>
+          </div>
+
+          <div class="demo-readout" aria-live="off">
+            <div>
+              <span class="demo-readout-status" data-demo-status>ERP / New record</span>
+              <p data-demo-message>The ERP holds the order, account, inventory, and control data needed to answer the next question.</p>
+            </div>
+            <span class="demo-sequence" data-demo-sequence>01 / 04</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="truth-statement" aria-labelledby="truth-title">
+      <p class="section-label">The operating foundation</p>
+      <h2 id="truth-title">The ERP holds the operation.<br>Agents make it accessible.<br><span>Work flows more smoothly.</span></h2>
+      <p>Instead of hunting through screens and reports, people can ask what is happening, why it happened, and what needs attention. Agents connect the answer across ERP records and guide work toward the next accountable step.</p>
+    </section>
+
+    <section class="media-section" aria-label="Planned MAXAUT imagery">
+      <div class="media-grid">
+        <figure class="media-placeholder media-placeholder-wide">
+          <div class="placeholder-canvas" role="img" aria-label="Placeholder for photography showing ERP in the flow of work">
+            <span class="placeholder-id">Image / 01</span>
+            <span class="placeholder-ratio">4:3</span>
+            <span class="placeholder-axis" aria-hidden="true"></span>
+            <span class="placeholder-center">Image placeholder</span>
+          </div>
+          <figcaption>
+            <strong>ERP in the flow of work</strong>
+            <span>Replace with operational photography or a strong product interface capture.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="media-placeholder media-placeholder-portrait">
+          <div class="placeholder-canvas" role="img" aria-label="Placeholder for photography showing a MAXAUT implementation workshop">
+            <span class="placeholder-id">Image / 02</span>
+            <span class="placeholder-ratio">3:4</span>
+            <span class="placeholder-axis" aria-hidden="true"></span>
+            <span class="placeholder-center">Image placeholder</span>
+          </div>
+          <figcaption>
+            <strong>Implementation in practice</strong>
+            <span>Replace with a workshop, process-mapping, or team collaboration image.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="workflow-section" id="workflow" aria-labelledby="workflow-title">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="section-label">Connected operations</p>
+          <h2 id="workflow-title">Ask the operation. See the context. Move the work forward.</h2>
+        </div>
+        <p>Natural-language access should not bypass the operation. Answers stay grounded in ERP records and rules, then connect to the right person, decision, or controlled update.</p>
+      </div>
+
+      <div class="workflow-board" data-workflow-explorer data-active-step="0">
+        <div class="workflow-toolbar">
+          <div class="workflow-choice">
+            <strong class="workflow-static-title" data-workflow-static-title>Order-to-cash</strong>
+            <div class="workflow-tabs" role="tablist" aria-label="Choose a business workflow" data-workflow-tabs hidden>
+              <button id="workflow-tab-order" class="workflow-tab" type="button" role="tab" aria-selected="true" aria-controls="workflow-panel" tabindex="0" data-workflow-key="order">Order-to-cash</button>
+              <button id="workflow-tab-procure" class="workflow-tab" type="button" role="tab" aria-selected="false" aria-controls="workflow-panel" tabindex="-1" data-workflow-key="procure">Procure-to-pay</button>
+              <button id="workflow-tab-service" class="workflow-tab" type="button" role="tab" aria-selected="false" aria-controls="workflow-panel" tabindex="-1" data-workflow-key="service">Service-to-cash</button>
+              <button id="workflow-tab-close" class="workflow-tab" type="button" role="tab" aria-selected="false" aria-controls="workflow-panel" tabindex="-1" data-workflow-key="close">Month-end close</button>
+            </div>
+          </div>
+          <span class="workflow-mode">Select a stage to inspect the handoff</span>
+        </div>
+
+        <div id="workflow-panel" role="tabpanel" aria-labelledby="workflow-tab-order" data-workflow-panel>
+          <ol class="workflow">
+            <li class="is-current" data-workflow-step-item>
+              <button class="workflow-step" type="button" data-workflow-step="0" aria-pressed="true" disabled>
+                <span class="workflow-marker" aria-hidden="true"><span></span></span>
+                <span class="workflow-meta"><span data-step-kind>ERP event</span><time data-step-time>08:42</time></span>
+                <strong data-step-title>Order received</strong>
+                <span class="workflow-summary" data-step-summary>The ERP records the transaction and anchors every following step.</span>
+                <span class="workflow-owner" data-step-owner>ERP</span>
+              </button>
+            </li>
+            <li data-workflow-step-item>
+              <button class="workflow-step" type="button" data-workflow-step="1" aria-pressed="false" disabled>
+                <span class="workflow-marker" aria-hidden="true"><span></span></span>
+                <span class="workflow-meta"><span data-step-kind>Agent action</span><time data-step-time>08:42</time></span>
+                <strong data-step-title>Context connected</strong>
+                <span class="workflow-summary" data-step-summary>The agent connects stock, account, pricing, and delivery context around the order.</span>
+                <span class="workflow-owner owner-blue" data-step-owner>Agent</span>
+              </button>
+            </li>
+            <li data-workflow-step-item>
+              <button class="workflow-step" type="button" data-workflow-step="2" aria-pressed="false" disabled>
+                <span class="workflow-marker" aria-hidden="true"><span></span></span>
+                <span class="workflow-meta"><span data-step-kind>Control point</span><time data-step-time>08:44</time></span>
+                <strong data-step-title>Exception routed</strong>
+                <span class="workflow-summary" data-step-summary>A margin exception goes to the accountable person with the relevant evidence attached.</span>
+                <span class="workflow-owner" data-step-owner>Human</span>
+              </button>
+            </li>
+            <li data-workflow-step-item>
+              <button class="workflow-step" type="button" data-workflow-step="3" aria-pressed="false" disabled>
+                <span class="workflow-marker" aria-hidden="true"><span></span></span>
+                <span class="workflow-meta"><span data-step-kind>ERP update</span><time data-step-time>08:51</time></span>
+                <strong data-step-title>Record advanced</strong>
+                <span class="workflow-summary" data-step-summary>The approved decision returns to the ERP, preserving the operational audit trail.</span>
+                <span class="workflow-owner" data-step-owner>ERP</span>
+              </button>
+            </li>
+          </ol>
+
+          <div class="workflow-detail" data-workflow-detail aria-live="polite">
+            <div class="workflow-detail-intro">
+              <span data-detail-index>Selected stage 01</span>
+              <h3 data-detail-title>Order received</h3>
+              <p data-detail-summary>The ERP records the transaction and establishes the source data for the flow.</p>
+            </div>
+            <dl class="workflow-detail-grid">
+              <div><dt>System input</dt><dd data-detail-input>Sales order, customer account, and requested delivery date</dd></div>
+              <div><dt>Agent action</dt><dd data-detail-agent>Wait for a validated ERP event before assembling context</dd></div>
+              <div><dt>Human control</dt><dd data-detail-control>Standard ERP validation and ownership rules</dd></div>
+              <div><dt>ERP write-back</dt><dd data-detail-writeback>New order record with its workflow state</dd></div>
+            </dl>
+          </div>
+        </div>
+
+        <div class="workflow-caption">
+          <span class="live-dot" aria-hidden="true"></span>
+          Example only. Exact workflows depend on your ERP, controls, and operating model.
+        </div>
+      </div>
+    </section>
+
+    <section class="capabilities-section" id="capabilities" aria-labelledby="capabilities-title">
+      <div class="section-heading capability-heading">
+        <p class="section-label">Where MAXAUT fits</p>
+        <h2 id="capabilities-title">Strengthen the foundation. Smooth the operation.</h2>
+      </div>
+
+      <div class="capability-list">
+        <article class="capability">
+          <div class="capability-title">
+            <span class="capability-mark" aria-hidden="true"></span>
+            <h3>Modernize your existing ERP</h3>
+          </div>
+          <p>Improve integrations, process design, and automation around the ERP foundation your business already depends on.</p>
+          <div class="capability-outcome">
+            <span>Best when</span>
+            <strong>The core holds the truth, but the work around it is fragmented.</strong>
+          </div>
+        </article>
+
+        <article class="capability">
+          <div class="capability-title">
+            <span class="capability-mark" aria-hidden="true"></span>
+            <h3>Implement a modern ERP foundation</h3>
+          </div>
+          <p>Establish a shared ERP foundation around the way your business actually operates, makes decisions, and grows.</p>
+          <div class="capability-outcome">
+            <span>Best when</span>
+            <strong>Disconnected tools and manual handoffs have become the system.</strong>
+          </div>
+        </article>
+
+        <article class="capability">
+          <div class="capability-title">
+            <span class="capability-mark capability-mark-blue" aria-hidden="true"></span>
+            <h3>Build agents people can talk to</h3>
+          </div>
+          <p>Let teams ask operational questions in plain language, receive grounded ERP context, and move into controlled actions.</p>
+          <div class="capability-outcome">
+            <span>Best when</span>
+            <strong>Routine answers still depend on reports, menus, or the person who knows where to look.</strong>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="approach-section" id="approach" aria-labelledby="approach-title">
+      <div class="approach-intro">
+        <p class="section-label">The MAXAUT approach</p>
+        <h2 id="approach-title">Start with the foundation. Connect the operation.</h2>
+        <p>Agentic AI becomes useful when the ERP foundation and operating model are understood first. We map how work moves, strengthen the core system, then connect the right decisions and handoffs.</p>
+      </div>
+
+      <ol class="approach-steps">
+        <li>
+          <span class="step-number">1</span>
+          <div><h3>Map the operation</h3><p>Identify systems, decisions, handoffs, exceptions, and the people accountable for them.</p></div>
+        </li>
+        <li>
+          <span class="step-number">2</span>
+          <div><h3>Strengthen the core</h3><p>Address the ERP, data, integration, and process gaps that would limit useful automation.</p></div>
+        </li>
+        <li>
+          <span class="step-number">3</span>
+          <div><h3>Open conversational access</h3><p>Give focused agents bounded ERP context, plain-language questions, and explicit escalation paths.</p></div>
+        </li>
+        <li>
+          <span class="step-number">4</span>
+          <div><h3>Smooth the flow</h3><p>Review how work moves, where people intervene, and what should improve next.</p></div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="principles-section" id="principles" aria-labelledby="principles-title">
+      <p class="section-label">Designed for connected work</p>
+      <h2 id="principles-title">AI should connect the operation.<br><span>Not sit beside it.</span></h2>
+      <div class="principle-row">
+        <article>
+          <h3>Answers grounded in the ERP</h3>
+          <p>Agents connect records and rules to answer operational questions before taking bounded action.</p>
+        </article>
+        <article>
+          <h3>Controls in the flow</h3>
+          <p>Permissions, thresholds, approvals, and escalation travel with the work from the start.</p>
+        </article>
+        <article>
+          <h3>Accountability stays clear</h3>
+          <p>Smoother operations should improve judgment and throughput without obscuring ownership.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="contact-signal" aria-hidden="true"><span></span></div>
+      <p class="section-label">A useful first conversation</p>
+      <h2 id="contact-title">Bring us the handoff that keeps slowing your operation down.</h2>
+      <p>We will start with the ERP foundation, follow how context and decisions move today, and identify where a modern system or focused agent could smooth the flow.</p>
+      <!-- Replace this placeholder with MAXAUT's confirmed scheduling URL before launch. -->
+      <a class="button button-signal" href="mailto:hello@maxaut.example?subject=MAXAUT%20discovery%20call">Book a discovery call <span aria-hidden="true">↗</span></a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="wordmark" href="#top" aria-label="MAXAUT, back to top"><span>MAX</span><strong>AUT</strong></a>
+    <p>Modern ERP. Ask, understand, act.</p>
+    <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
+  </footer>
+</body>
+</html>

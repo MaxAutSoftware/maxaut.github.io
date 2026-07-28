@@ -1,0 +1,25 @@
+{
+  "title": "Choose MAXAUT's visual world",
+  "question": "The recommended direction turns ERP workflows and AI agents into one visible operating fabric. Keep it, choose the operational alternate, or re-roll.",
+  "options": [
+    {
+      "id": "operations-loom",
+      "label": "The Operations Loom",
+      "kicker": "RECOMMENDED DIRECTION",
+      "lineage": "Jacquard control cards, process routing sheets, and woven structures",
+      "body": "MAXAUT becomes the system that threads established ERP processes and new AI agents into one coordinated business fabric. The first viewport shows live operational threads crossing a precise workflow field, with finance, inventory, service, and agents visibly joining at controlled handoffs. The page moves inward from business outcomes to process details, then to a discovery call. The visual system can extend naturally into case studies, service pages, diagrams, and dashboards. Honest risk: without disciplined labels and software-specific detail, the loom metaphor could feel more artisanal than technological."
+    },
+    {
+      "id": "split-flap-operations",
+      "label": "Operations Concourse",
+      "kicker": "HIGH-CLARITY ALTERNATE",
+      "lineage": "rail concourse split-flap information systems",
+      "body": "ERP processes become live departures moving from request to approved, fulfilled, and reconciled. Fixed operational columns, crisp status lamps, and cascading state changes make orchestration instantly legible. It is direct and data-rich, though its transport association is more familiar and less ownable than the Operations Loom.",
+      "hero": "https://impeccable.style/worlds/cards/signals-instruments-split-flap-concourse-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/signals-instruments-split-flap-concourse.webp"
+    }
+  ],
+  "reroll": true,
+  "canon": true,
+  "steer": true
+}
