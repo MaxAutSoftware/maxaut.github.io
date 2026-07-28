@@ -27,6 +27,7 @@ The work sits inside operational processes such as finance, purchasing, inventor
 - Modernization of existing ERP environments
 - ERP selection, configuration, and implementation
 - Custom AI agents connected to ERP data and workflows
+- Bring-your-own-model support for selecting an AI model or provider around security, cost, performance, and deployment requirements
 - The specific ERP platforms, integrations, delivery regions, and engagement model remain open decisions
 
 ## Brand Commitments
