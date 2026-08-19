@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MAXAUT engineers the software, business systems, and intelligent automation a business runs on.">
+  <meta name="theme-color" content="#e7e4db">
+  <title>MAXAUT | We engineer the systems your business runs on</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="interactions.js" defer></script>
+</head>
+<body>
+  <!--
+    THESIS: MAXAUT engineers the systems a business runs on (software, business systems, and the automation connecting them).
+    OWN-WORLD: Matte off-white, near-black type, one scarce lime signal, JetBrains Mono reserved for the technical voice only.
+    STORY: A broad systems-engineering claim, proven with one real ERP example, explained as one operating substrate, broadened
+      into three capabilities, backed by evidence once it exists, delivered through a clear approach and principles, closed
+      with one invitation to talk.
+    FORM: Fixed eight-beat homepage per /DESIGN.md's Homepage Narrative: POSITION, DEMONSTRATE, EXPLAIN, CAPABILITIES,
+      EVIDENCE (shipped deferred; see the "hidden" section below), APPROACH, PRINCIPLES, CONVERT.
+  -->
+  <canvas class="substrate-canvas" data-substrate-waves aria-hidden="true"></canvas>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="wordmark" href="#top" aria-label="MAXAUT home">
+        <span class="wordmark-lead">MAX</span><strong>AUT</strong><span class="wordmark-cursor" aria-hidden="true">_</span>
+      </a>
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <a href="#capabilities">Capabilities</a>
+        <a href="#approach">Approach</a>
+        <a href="#principles">Principles</a>
+      </nav>
+      <a class="button button-dark header-action" href="#contact">Book a discovery call</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="beat-marker">[ 01 / POSITION ]</p>
+        <h1 id="hero-title">We engineer the systems your business runs on.</h1>
+        <div class="hero-intro">
+          <p>Software, business systems, and the automation that connects them, engineered around how your business actually operates, not the other way around.</p>
+          <div class="hero-actions">
+            <a class="button button-dark" href="#contact">Start a conversation</a>
+            <a class="text-link" href="#explain">See how it works <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="operations-demo" id="demonstrate" data-operations-demo data-active-step="0" role="group" aria-label="Interactive order-to-cash operation">
+        <p class="beat-marker" aria-hidden="true">[ 02 / DEMONSTRATE ]</p>
+        <div class="demo-toolbar">
+          <div class="demo-identity">
+            <span class="live-dot" aria-hidden="true"></span>
+            <strong>Interactive operation</strong>
+            <span>Sales order SO-10482</span>
+          </div>
+          <span class="demo-hint"><i aria-hidden="true"></i> Hover, focus, or tap a stage</span>
+        </div>
+
+        <div class="demo-field">
+          <div class="data-ribbon" aria-hidden="true">
+            <span>08:42:12 · ERP event received</span>
+            <span>Account · Standard terms</span>
+            <span>Inventory · Available</span>
+            <span>Control · Approval required</span>
+          </div>
+
+          <div class="demo-path">
+            <div class="demo-progress-track" aria-hidden="true"><span></span></div>
+            <ol class="demo-steps">
+              <li class="demo-step is-current" data-demo-step="0">
+                <button class="demo-step-button" type="button" data-demo-target="0" aria-pressed="true">
+                  <span class="demo-node" aria-hidden="true"></span>
+                  <span class="demo-step-copy">
+                    <span>ERP record</span>
+                    <strong>Order received</strong>
+                    <small>SO-10482</small>
+                  </span>
+                </button>
+              </li>
+              <li class="demo-step" data-demo-step="1">
+                <button class="demo-step-button" type="button" data-demo-target="1" aria-pressed="false">
+                  <span class="demo-node" aria-hidden="true"></span>
+                  <span class="demo-step-copy">
+                    <span>Ask the system</span>
+                    <strong>Can this ship today?</strong>
+                    <small>Plain-language question</small>
+                  </span>
+                </button>
+              </li>
+              <li class="demo-step" data-demo-step="2">
+                <button class="demo-step-button" type="button" data-demo-target="2" aria-pressed="false">
+                  <span class="demo-node" aria-hidden="true"></span>
+                  <span class="demo-step-copy">
+                    <span>Grounded answer</span>
+                    <strong>Stock ready. Approval needed.</strong>
+                    <small>ERP context connected</small>
+                  </span>
+                </button>
+              </li>
+              <li class="demo-step" data-demo-step="3">
+                <button class="demo-step-button" type="button" data-demo-target="3" aria-pressed="false">
+                  <span class="demo-node" aria-hidden="true"></span>
+                  <span class="demo-step-copy">
+                    <span>Controlled action</span>
+                    <strong>Approval routed</strong>
+                    <small>Audit trail preserved</small>
+                  </span>
+                </button>
+              </li>
+            </ol>
+          </div>
+
+          <div class="demo-readout" aria-live="off">
+            <div>
+              <span class="demo-readout-status" data-demo-status>ERP / New record</span>
+              <p data-demo-message>The ERP holds the order, account, inventory, and control data needed to answer the next question.</p>
+            </div>
+            <span class="demo-sequence" data-demo-sequence>01 / 04</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="truth-statement" id="explain" aria-labelledby="explain-title">
+      <p class="beat-marker">[ 03 / EXPLAIN ]</p>
+      <h2 id="explain-title">Software, ERP, and automation aren't separate projects.<br><span>They're one operating system.</span></h2>
+      <p>Instead of hunting through screens, spreadsheets, and reports, people should be able to ask what is happening, why it happened, and what needs attention next. That only works when the systems underneath (the software, the ERP, the data, the automation) are treated as one connected foundation, not isolated tools bolted together.</p>
+    </section>
+
+    <section class="capabilities-section" id="capabilities" aria-labelledby="capabilities-title">
+      <div class="section-heading capability-heading">
+        <p class="beat-marker">[ 04 / CAPABILITIES ]</p>
+        <h2 id="capabilities-title">Strengthen the foundation. Build what's missing.</h2>
+      </div>
+
+      <ul class="capability-list">
+        <li class="capability">
+          <div class="capability-title">
+            <span class="capability-mark" aria-hidden="true"></span>
+            <h3>Custom software engineering</h3>
+          </div>
+          <p>Bespoke applications and integrations for problems off-the-shelf tools don't solve. Built to fit the business, not the other way around.</p>
+          <div class="capability-outcome">
+            <span>Best when</span>
+            <strong>Generic software is forcing a workaround into how the business actually operates.</strong>
+          </div>
+        </li>
+
+        <li class="capability">
+          <div class="capability-title">
+            <span class="capability-mark" aria-hidden="true"></span>
+            <h3>Business systems, built or modernized</h3>
+          </div>
+          <p>ERP selection, implementation, and modernization: establishing or strengthening the operational core the rest of the business depends on.</p>
+          <div class="capability-outcome">
+            <span>Best when</span>
+            <strong>Disconnected tools and manual handoffs have quietly become the system.</strong>
+          </div>
+        </li>
+
+        <li class="capability">
+          <div class="capability-title">
+            <span class="capability-mark" aria-hidden="true"></span>
+            <h3>Intelligent automation</h3>
+          </div>
+          <p>Agents connected to real systems, data, and permissions, so people can ask questions in plain language and move straight into a controlled action.</p>
+          <div class="capability-outcome">
+            <span>Best when</span>
+            <strong>Routine answers still depend on reports, menus, or the one person who knows where to look.</strong>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!--
+      EVIDENCE (beat 05) ships deferred: PRODUCT.md forbids fabricated case studies,
+      testimonials, or client names, and none exist yet. The section is built and
+      styled so it's ready to populate with real, nameable work. Remove the
+      `hidden` attribute once that exists, rather than filling it with placeholder
+      copy in the meantime.
+    -->
+    <section class="evidence-section" id="evidence" aria-labelledby="evidence-title" hidden>
+      <div class="section-heading evidence-heading">
+        <p class="beat-marker">[ 05 / EVIDENCE ]</p>
+        <h2 id="evidence-title">Selected systems.</h2>
+      </div>
+      <ul class="evidence-list">
+        <!-- populate once real, nameable work exists -->
+      </ul>
+    </section>
+
+    <section class="approach-section" id="approach" aria-labelledby="approach-title">
+      <div class="approach-intro">
+        <p class="beat-marker">[ 06 / APPROACH ]</p>
+        <h2 id="approach-title">Understand the operation. Then engineer the fix.</h2>
+        <p>Good automation, good software, and good business systems all depend on the same thing: understanding how the business actually operates first. We map the work, strengthen what it runs on, build what's missing, then keep improving it.</p>
+      </div>
+
+      <ol class="approach-steps">
+        <li>
+          <span class="step-number">1</span>
+          <div class="approach-step-copy"><h3>Understand</h3><p>Map the systems, decisions, handoffs, and people accountable for how work actually gets done today.</p></div>
+        </li>
+        <li>
+          <span class="step-number">2</span>
+          <div class="approach-step-copy"><h3>Design</h3><p>Define the architecture, data model, and integration points needed to close the gaps that limit the business.</p></div>
+        </li>
+        <li>
+          <span class="step-number">3</span>
+          <div class="approach-step-copy"><h3>Build</h3><p>Ship in vertical slices: real software and working systems, not a six-month disappearance.</p></div>
+        </li>
+        <li>
+          <span class="step-number">4</span>
+          <div class="approach-step-copy"><h3>Evolve</h3><p>Review how work moves, where people intervene, and what should improve or automate next.</p></div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="principles-section" id="principles" aria-labelledby="principles-title">
+      <p class="beat-marker">[ 07 / PRINCIPLES ]</p>
+      <h2 id="principles-title">Engineering should reduce complexity.<br><span>Not move it somewhere else.</span></h2>
+      <div class="principle-row">
+        <article>
+          <h3>Built around the operation</h3>
+          <p>Technology fits how the business actually works, not the other way around.</p>
+        </article>
+        <article>
+          <h3>Own what matters, buy what doesn't</h3>
+          <p>Use platforms where they help. Write bespoke software where differentiation demands it.</p>
+        </article>
+        <article>
+          <h3>Automate with context</h3>
+          <p>Agents and automation act against real systems, real permissions, and real accountability, never in isolation.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="contact-signal" aria-hidden="true"><span></span></div>
+      <p class="beat-marker">[ 08 / CONVERT ]</p>
+      <h2 id="contact-title">Bring us the system or handoff that's slowing the business down.</h2>
+      <p>We start with how the business actually operates today, trace where systems and decisions get stuck, and identify where a modern system or a focused agent would genuinely help.</p>
+      <!-- Replace this placeholder with MAXAUT's confirmed scheduling URL before launch. -->
+      <a class="button button-signal" href="mailto:hello@maxaut.example?subject=MAXAUT%20discovery%20call">Book a discovery call <span aria-hidden="true">↗</span></a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="wordmark" href="#top" aria-label="MAXAUT, back to top">
+      <span class="wordmark-lead">MAX</span><strong>AUT</strong><span class="wordmark-cursor" aria-hidden="true">_</span>
+    </a>
+    <p>Systems, engineered.</p>
+    <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
+  </footer>
+</body>
+</html>

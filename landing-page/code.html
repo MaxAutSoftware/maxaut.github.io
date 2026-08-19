@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MAX&gt;AUT_ | MAXIMUM_SYSTEM_PERFORMANCE</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Hanken+Grotesk:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #0A0A0A;
+            color: #e5e2e1;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glow-sm:hover {
+            box-shadow: 0 0 15px rgba(195, 244, 0, 0.4);
+        }
+        .terminal-cursor::after {
+            content: '_';
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        .hairline-border {
+            border: 0.5px solid #262626;
+        }
+        .bracket-top-left::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            width: 12px;
+            height: 12px;
+            border-top: 2px solid #c3f400;
+            border-left: 2px solid #c3f400;
+        }
+        .blueprint-grid {
+            background-image: linear-gradient(#161616 1px, transparent 1px), linear-gradient(90deg, #161616 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#353534",
+                        "on-secondary": "#00363a",
+                        "background": "#131313",
+                        "primary-container": "#c3f400",
+                        "error-container": "#93000a",
+                        "surface-dim": "#131313",
+                        "secondary": "#d3fbff",
+                        "primary-fixed-dim": "#abd600",
+                        "surface-container-high": "#2a2a2a",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "inverse-primary": "#506600",
+                        "on-error": "#690005",
+                        "surface": "#131313",
+                        "primary-fixed": "#c3f400",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-container-low": "#1c1b1b",
+                        "error": "#ffb4ab",
+                        "on-primary": "#283500",
+                        "on-secondary-fixed": "#002022",
+                        "on-primary-container": "#556d00",
+                        "surface-tint": "#abd600",
+                        "tertiary": "#ffffff",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#004f54",
+                        "secondary-container": "#00eefc",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-secondary-container": "#00686f",
+                        "surface-container": "#201f1f",
+                        "on-primary-fixed-variant": "#3c4d00",
+                        "on-background": "#e5e2e1",
+                        "outline-variant": "#444933",
+                        "tertiary-fixed": "#e5e2e1",
+                        "primary": "#ffffff",
+                        "tertiary-container": "#e5e2e1",
+                        "surface-container-highest": "#353534",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "on-primary-fixed": "#161e00",
+                        "inverse-on-surface": "#313030",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "secondary-fixed-dim": "#00dbe9",
+                        "on-tertiary": "#313030",
+                        "surface-bright": "#3a3939",
+                        "outline": "#8e9379",
+                        "on-surface": "#e5e2e1",
+                        "on-surface-variant": "#c4c9ac",
+                        "secondary-fixed": "#7df4ff",
+                        "on-tertiary-container": "#656464"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "margin-mobile": "16px",
+                        "max-width": "1440px",
+                        "unit": "4px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-xl-mobile": ["JetBrains Mono"],
+                        "body-md": ["Hanken Grotesk"],
+                        "label-mono": ["JetBrains Mono"],
+                        "headline-md": ["JetBrains Mono"],
+                        "headline-xl": ["JetBrains Mono"],
+                        "headline-lg": ["JetBrains Mono"],
+                        "body-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-xl-mobile": ["32px", {"lineHeight": "1.1", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-mono": ["14px", {"lineHeight": "1.0", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="w-full top-0 sticky z-50 bg-background/80 backdrop-blur-md border-b border-surface-variant">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-max-width mx-auto">
+<div class="flex items-center gap-4">
+<img alt="MAX&gt;AUT_" class="h-8 md:h-10 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc0uG3_Wv9FdMdDB_DbrfLVHUL-iN2ryTMqneyvJlqfoqCiUxdTDfOZWVQIszUaWTJNRMtjBOm-8_440p2ygdOkkQH8ex191s_NqJWmmq2lvr3mVTJNwJHFhd-69lLiHdRxvS7nLc0XyJ4Oba68zmEKCwKZKZHN5-aMoTXLczwQ8VnUgRS824ADlu73m1VGf0GonQOTzflqR2G6wJ0Z4fe7HvzlDmCCNCHJJovryi8cDOeftlSL0BJm2k1wmX8kvUoIdopXnNAwVT1"/>
+</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-label-mono text-label-mono text-primary-container border-b-2 border-primary-container pb-1 transition-all" href="#">SERVICES</a>
+<a class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary-container transition-all" href="#">APPROACH</a>
+<a class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary-container transition-all" href="#">ENGINEERING</a>
+<a class="font-label-mono text-label-mono text-on-surface-variant hover:text-primary-container transition-all" href="#">CONSULT</a>
+</div>
+<button class="bg-primary-container text-on-primary px-6 py-2 font-label-mono text-label-mono font-bold hover:brightness-110 hover:glow-sm transition-all">
+                START_SESSION
+            </button>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-[80vh] flex flex-col justify-center blueprint-grid border-b border-surface-variant">
+<div class="px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-gutter py-20 relative z-10">
+<div class="md:col-span-8 flex flex-col justify-center">
+<div class="inline-flex items-center gap-2 mb-6">
+<span class="w-3 h-3 bg-primary-container"></span>
+<p class="font-label-mono text-label-mono text-primary-container tracking-widest uppercase">System_Status: Operational</p>
+</div>
+<h1 class="font-headline-xl-mobile md:text-headline-xl font-headline-xl text-primary leading-none mb-8 tracking-tighter uppercase">
+                        MAXIMUM_<br/>SYSTEM_<br/><span class="text-primary-container">PERFORMANCE</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-10">
+                        We engineer bespoke software solutions for complex technical challenges. Precision-built, future-proof, and designed for scale.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary-container text-on-primary px-8 py-4 font-label-mono text-label-mono font-bold text-lg hover:glow-sm transition-all uppercase">
+                            INITIATE_CONSULT
+                        </button>
+<button class="border border-primary-container text-primary-container px-8 py-4 font-label-mono text-label-mono font-bold text-lg hover:bg-primary-container/10 transition-all uppercase">
+                            VIEW_PORTFOLIO
+                        </button>
+</div>
+</div>
+<div class="hidden md:flex md:col-span-4 items-center justify-end">
+<div class="relative w-full aspect-square border border-surface-variant p-4">
+<div class="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-primary-container"></div>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-primary-container"></div>
+<div class="w-full h-full border border-surface-variant/30 flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 opacity-20 pointer-events-none">
+<div class="h-px w-full bg-primary-container absolute top-1/4"></div>
+<div class="h-px w-full bg-primary-container absolute top-2/4"></div>
+<div class="h-px w-full bg-primary-container absolute top-3/4"></div>
+<div class="w-px h-full bg-primary-container absolute left-1/4"></div>
+<div class="w-px h-full bg-primary-container absolute left-2/4"></div>
+<div class="w-px h-full bg-primary-container absolute left-3/4"></div>
+</div>
+<img class="w-4/5 h-4/5 object-contain opacity-80" data-alt="A highly detailed 3D technical blueprint visualization of a complex microprocessor architecture. The design uses neon green glowing lines against a deep charcoal background, showcasing intricate layers of circuitry and data pathways in a brutalist, high-tech aesthetic. Sharp perspective lines create a sense of vast digital depth, reflecting a premium engineering mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOhIUr6KVQ1C28zWqc-zv1cADv7h4WZY6e9mXF1WeGcfi6qHybsFhNqZ7ynh8zIiEZM-Up-m5U_5ZaFHCXUv63Wp-HE9FfpXBvMaoD-dXqBXaVsRD56NfhkNy3Kh66o9LwG5Gze1xU7b3i0FD3-aTYILtUkzf9d-etRS8y9JAax9nqsHfvNtu4TBJgoms-gQCZznNEKzBFqEvsupN40jsdbA8eSSgSx4S7xSZb9IE4VUhNzwQ238WZDasfn71YwJE2HVxG_Wvcb0S_"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Atmospheric element -->
+<div class="absolute bottom-0 right-0 p-8 hidden md:block">
+<p class="font-label-mono text-[10px] text-surface-variant leading-tight">
+                    COORD_X: 40.7128<br/>
+                    COORD_Y: -74.0060<br/>
+                    SYS_LOAD: 0.0042ms
+                </p>
+</div>
+</section>
+<!-- Services Grid -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+<div>
+<h2 class="font-label-mono text-label-mono text-primary-container mb-2 uppercase tracking-[0.2em] underline underline-offset-8">CORE_CAPABILITIES</h2>
+<h3 class="font-headline-lg text-headline-lg text-primary uppercase">Specialized Engineering Zones</h3>
+</div>
+<div class="font-label-mono text-label-mono text-on-surface-variant text-right">
+                    [ SECTOR_01 // ARCHITECTURE ]
+                </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-surface-variant border border-surface-variant">
+<!-- Service 1 -->
+<div class="bg-background p-10 group hover:bg-surface-container-low transition-colors duration-500">
+<div class="mb-12">
+<span class="material-symbols-outlined text-primary-container text-4xl mb-6">architecture</span>
+<h4 class="font-headline-md text-headline-md text-primary mb-4 uppercase">CUSTOM_ENGINEERING</h4>
+<div class="w-12 h-1 bg-primary-container group-hover:w-full transition-all duration-700"></div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">
+                        High-performance application architecture tailored to specific business logic. We build foundations that handle extreme load without latency regression.
+                    </p>
+<ul class="font-label-mono text-label-mono space-y-3 text-on-tertiary-fixed-variant group-hover:text-on-surface-variant transition-colors">
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary-container"></span> DISTRIBUTED_SYSTEMS</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary-container"></span> LOW_LEVEL_OPTIMIZATION</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary-container"></span> SECURE_BY_DESIGN</li>
+</ul>
+</div>
+<!-- Service 2 -->
+<div class="bg-background p-10 group hover:bg-surface-container-low transition-colors duration-500">
+<div class="mb-12">
+<span class="material-symbols-outlined text-primary-container text-4xl mb-6">memory</span>
+<h4 class="font-headline-md text-headline-md text-primary mb-4 uppercase">AI_&amp;_DATA_LOGIC</h4>
+<div class="w-12 h-1 bg-primary-container group-hover:w-full transition-all duration-700"></div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">
+                        Intelligent systems and data-driven insights. Integrating advanced LLM orchestration and real-time processing pipelines into core infrastructure.
+                    </p>
+<ul class="font-label-mono text-label-mono space-y-3 text-on-tertiary-fixed-variant group-hover:text-on-surface-variant transition-colors">
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary-container"></span> PREDICTIVE_ANALYTICS</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary-container"></span> AGENTIC_WORKFLOWS</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary-container"></span> VECTOR_DATABASES</li>
+</ul>
+</div>
+<!-- Service 3 -->
+<div class="bg-background p-10 group hover:bg-surface-container-low transition-colors duration-500">
+<div class="mb-12">
+<span class="material-symbols-outlined text-primary-container text-4xl mb-6">terminal</span>
+<h4 class="font-headline-md text-headline-md text-primary mb-4 uppercase">STRATEGIC_CONSULT</h4>
+<div class="w-12 h-1 bg-primary-container group-hover:w-full transition-all duration-700"></div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">
+                        Technical leadership and architecture review. We solve the "impossible" bottlenecks and provide a roadmap for long-term scalability and engineering excellence.
+                    </p>
+<ul class="font-label-mono text-label-mono space-y-3 text-on-tertiary-fixed-variant group-hover:text-on-surface-variant transition-colors">
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary-container"></span> TECH_DEBT_AUDIT</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary-container"></span> CTO_AS_A_SERVICE</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary-container"></span> STACK_MODERNIZATION</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Methodology / Approach -->
+<section class="py-24 bg-surface-container-lowest border-y border-surface-variant overflow-hidden relative">
+<div class="px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto grid grid-cols-1 lg:grid-cols-12 gap-gutter relative z-10">
+<div class="lg:col-span-4">
+<h2 class="font-label-mono text-label-mono text-primary-container mb-6 uppercase tracking-[0.2em]">METHODOLOGY</h2>
+<h3 class="font-headline-lg text-headline-lg text-primary uppercase mb-8 leading-tight">THE_PRECISION_PATH</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-12">
+                        Engineering isn't just about code; it's about structural integrity. Our three-phase process ensures zero friction from discovery to deployment.
+                    </p>
+<div class="border border-surface-variant p-6 relative">
+<div class="absolute top-0 right-0 p-2 font-label-mono text-[10px] text-surface-variant">v.2.0.4</div>
+<p class="font-label-mono text-xs text-primary-container uppercase mb-2">// RAW_DATA_STREAM</p>
+<p class="font-label-mono text-[10px] text-on-surface-variant leading-relaxed opacity-50">
+                            INITIALIZING PHASE_01...<br/>
+                            SCANNING_INFRASTRUCTURE... DONE.<br/>
+                            MAPPING_DEPENDENCIES... 100%<br/>
+                            CALCULATING_TRAJECTORY...
+                        </p>
+</div>
+</div>
+<div class="lg:col-span-8 flex flex-col gap-px bg-surface-variant border-x border-surface-variant">
+<div class="bg-background p-8 flex gap-8 items-start hover:bg-surface-container-low transition-colors">
+<div class="font-headline-md text-headline-md font-bold text-primary-container opacity-20">01</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-primary mb-2 uppercase">DISCOVERY_&amp;_AUDIT</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Deep-dive into existing codebase and business requirements. We identify bottlenecks and surface hidden architectural risks before a single line of new code is written.</p>
+</div>
+</div>
+<div class="bg-background p-8 flex gap-8 items-start hover:bg-surface-container-low transition-colors">
+<div class="font-headline-md text-headline-md font-bold text-primary-container opacity-20">02</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-primary mb-2 uppercase">ARCHITECTURE_BLUEPRINT</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">We design the solution in high fidelity. This includes schema definitions, infrastructure diagrams, and performance benchmarks that serve as our source of truth.</p>
+</div>
+</div>
+<div class="bg-background p-8 flex gap-8 items-start hover:bg-surface-container-low transition-colors">
+<div class="font-headline-md text-headline-md font-bold text-primary-container opacity-20">03</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-primary mb-2 uppercase">PRECISION_EXECUTION</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Iterative development with rigorous testing. We ship code in vertical slices, ensuring continuous delivery and immediate feedback loops on performance metrics.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Core Competencies -->
+<section class="py-20 px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto">
+<div class="border border-surface-variant p-1 w-fit mb-12">
+<div class="px-4 py-1 bg-surface-variant font-label-mono text-label-mono text-primary uppercase">CORE_COMPETENCIES</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-gutter">
+<div class="flex flex-col gap-2">
+<span class="font-label-mono text-label-mono text-on-tertiary-fixed-variant">01/</span>
+<span class="font-label-mono text-label-mono text-primary uppercase">Rust/C++</span>
+</div>
+<div class="flex flex-col gap-2">
+<span class="font-label-mono text-label-mono text-on-tertiary-fixed-variant">02/</span>
+<span class="font-label-mono text-label-mono text-primary uppercase">Kubernetes</span>
+</div>
+<div class="flex flex-col gap-2">
+<span class="font-label-mono text-label-mono text-on-tertiary-fixed-variant">03/</span>
+<span class="font-label-mono text-label-mono text-primary uppercase">TensorFlow</span>
+</div>
+<div class="flex flex-col gap-2">
+<span class="font-label-mono text-label-mono text-on-tertiary-fixed-variant">04/</span>
+<span class="font-label-mono text-label-mono text-primary uppercase">PostgreSQL</span>
+</div>
+<div class="flex flex-col gap-2">
+<span class="font-label-mono text-label-mono text-on-tertiary-fixed-variant">05/</span>
+<span class="font-label-mono text-label-mono text-primary uppercase">GraphQL/gRPC</span>
+</div>
+<div class="flex flex-col gap-2">
+<span class="font-label-mono text-label-mono text-on-tertiary-fixed-variant">06/</span>
+<span class="font-label-mono text-label-mono text-primary uppercase">AWS/GCP/Azure</span>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-32 px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto">
+<div class="border border-primary-container p-12 md:p-20 relative overflow-hidden bg-surface-container-lowest">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary-container/10 blur-[120px] -mr-32 -mt-32"></div>
+<div class="relative z-10 max-w-3xl">
+<h2 class="font-headline-xl text-headline-xl text-primary uppercase mb-6 leading-none">READY_FOR_<br/><span class="text-primary-container">DEPLOYMENT?</span></h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10">
+                        Stop struggling with technical debt and legacy constraints. Let's engineer the future of your product together. Reach out to start your project consultation.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-6 items-center">
+<button class="w-full sm:w-auto bg-primary-container text-on-primary px-10 py-5 font-label-mono text-label-mono font-bold text-xl hover:glow-sm transition-all uppercase">
+                            OPEN_CONNECTION
+                        </button>
+<p class="font-label-mono text-label-mono text-on-tertiary-fixed-variant uppercase">
+                            Estimated Response: <span class="text-primary-container"> &lt; 12_HOURS </span>
+</p>
+</div>
+</div>
+<div class="absolute bottom-0 right-0 p-8 hidden lg:block opacity-10">
+<span class="material-symbols-outlined text-[180px]">rocket_launch</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-20 border-t border-surface-variant bg-background">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-12 max-w-max-width mx-auto gap-gutter">
+<div class="flex flex-col gap-4">
+<img alt="MAX&gt;AUT_" class="h-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc0uG3_Wv9FdMdDB_DbrfLVHUL-iN2ryTMqneyvJlqfoqCiUxdTDfOZWVQIszUaWTJNRMtjBOm-8_440p2ygdOkkQH8ex191s_NqJWmmq2lvr3mVTJNwJHFhd-69lLiHdRxvS7nLc0XyJ4Oba68zmEKCwKZKZHN5-aMoTXLczwQ8VnUgRS824ADlu73m1VGf0GonQOTzflqR2G6wJ0Z4fe7HvzlDmCCNCHJJovryi8cDOeftlSL0BJm2k1wmX8kvUoIdopXnNAwVT1"/>
+<p class="font-label-mono text-label-mono text-on-tertiary-fixed-variant">© 2024 MAX_AUT.SYSTEMS // ALL_RIGHTS_RESERVED</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-label-mono text-label-mono text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">GIT_REPO</a>
+<a class="font-label-mono text-label-mono text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">ARCHITECTURE_LOG</a>
+<a class="font-label-mono text-label-mono text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">PRIVACY</a>
+<a class="font-label-mono text-label-mono text-on-tertiary-fixed-variant hover:text-primary transition-colors" href="#">CONTACT</a>
+</div>
+<div class="flex gap-4">
+<a class="w-10 h-10 border border-surface-variant flex items-center justify-center hover:border-primary-container transition-colors group" href="#">
+<span class="material-symbols-outlined text-on-tertiary-fixed-variant group-hover:text-primary-container text-xl">share</span>
+</a>
+<a class="w-10 h-10 border border-surface-variant flex items-center justify-center hover:border-primary-container transition-colors group" href="#">
+<span class="material-symbols-outlined text-on-tertiary-fixed-variant group-hover:text-primary-container text-xl">rss_feed</span>
+</a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction for a terminal-like cursor on CTAs
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                if(!button.innerText.endsWith('_')) {
+                    button.dataset.originalText = button.innerText;
+                    button.classList.add('terminal-cursor');
+                }
+            });
+            button.addEventListener('mouseleave', () => {
+                button.classList.remove('terminal-cursor');
+            });
+        });
+
+        // Simple scroll reveal
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100');
+                    entry.target.classList.remove('opacity-0', 'translate-y-4');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-4');
+            observer.observe(section);
+        });
+    </script>
+</body></html>

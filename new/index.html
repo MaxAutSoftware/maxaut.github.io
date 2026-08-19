@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MAXAUT engineers the software, business systems, and intelligent automation a business runs on.">
+  <meta name="theme-color" content="#0b0b0a">
+  <title>MAXAUT | We engineer the systems your business runs on</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="interactions.js" defer></script>
+</head>
+<body>
+  <!--
+    THESIS: MAXAUT engineers the systems a business runs on (custom software, business systems, and the automation
+      connecting them).
+    OWN-WORLD: Near-black brutalist ground, one loud lime signal, JetBrains Mono headlines, sharp corners, glow on interaction.
+    STORY: One claim in the hero (what and how), a taxonomy of what we build, a clear four-step approach, one invitation
+      to talk. No section restates a claim already made elsewhere.
+    FORM: Four live beats per /DESIGN.md's Homepage Narrative, tightened to cut repetition: POSITION, CAPABILITIES,
+      APPROACH, CONVERT. EVIDENCE stays deferred (hidden) until there's real work to show. DEMONSTRATE, and the original
+      standalone EXPLAIN/PRINCIPLES sections, are retired: DEMONSTRATE is commented out at the bottom of main in case
+      it's reused later, EXPLAIN/PRINCIPLES were deleted outright since their one useful idea each is now folded into
+      the hero and the Approach section instead of repeating it in its own section.
+  -->
+  <canvas class="substrate-canvas" data-substrate-waves aria-hidden="true"></canvas>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="wordmark" href="#top" aria-label="MAXAUT home">
+        <span class="wordmark-lead">MAX</span><strong>AUT</strong><span class="wordmark-cursor" aria-hidden="true">_</span>
+      </a>
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <a href="#capabilities">Capabilities</a>
+        <a href="#approach">Approach</a>
+      </nav>
+      <a class="button button-outline header-action" href="#contact">Book a discovery call</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="beat-marker">[ 01 / POSITION ]</p>
+        <h1 id="hero-title">We engineer the systems your <span>business runs on.</span></h1>
+        <div class="hero-intro">
+          <p>We learn how your business actually operates, then engineer the right mix of custom software, ERP, data, and automation around it, as one coherent system.</p>
+          <div class="hero-actions">
+            <a class="button button-outline" href="#contact">Start a conversation</a>
+            <!--<a class="text-link" href="#capabilities">See what we build <span aria-hidden="true">↓</span></a>-->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="capabilities-section" id="capabilities" aria-labelledby="capabilities-title">
+      <div class="section-heading capability-heading">
+        <p class="beat-marker">[ 02 / CAPABILITIES ]</p>
+        <h2 id="capabilities-title" class="sr-only">Capabilities</h2>
+      </div>
+
+      <ul class="capability-list">
+        <li class="capability">
+          <div class="capability-title">
+            <span class="capability-mark" aria-hidden="true"></span>
+            <h3>Custom software engineering</h3>
+          </div>
+          <p>Bespoke applications and integrations for problems off-the-shelf tools don't solve. Built to fit the business, not the other way around.</p>
+          <div class="capability-outcome">
+            <span>Best when</span>
+            <strong>Generic software is forcing a workaround into how the business actually operates.</strong>
+          </div>
+        </li>
+
+        <li class="capability">
+          <div class="capability-title">
+            <span class="capability-mark" aria-hidden="true"></span>
+            <h3>Business systems, built or modernized</h3>
+          </div>
+          <p>ERP selection, implementation, and modernization: establishing or strengthening the operational core the rest of the business depends on.</p>
+          <div class="capability-outcome">
+            <span>Best when</span>
+            <strong>Disconnected tools and manual handoffs have quietly become the system.</strong>
+          </div>
+        </li>
+
+        <li class="capability">
+          <div class="capability-title">
+            <span class="capability-mark" aria-hidden="true"></span>
+            <h3>AI & Intelligent automation</h3>
+          </div>
+          <p>Agents connected to real systems, data, and permissions, so people can ask questions in plain language and move straight into a controlled action.</p>
+          <div class="capability-outcome">
+            <span>Best when</span>
+            <strong>Routine answers still depend on reports, menus, or the one person who knows where to look.</strong>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!--
+      EVIDENCE (beat 05 in the original 8-beat scheme) ships deferred: PRODUCT.md
+      forbids fabricated case studies, testimonials, or client names, and none
+      exist yet. The section is built and styled so it's ready to populate with
+      real, nameable work. Remove the `hidden` attribute once that exists, rather
+      than filling it with placeholder copy in the meantime. Left numbered per
+      the original scheme since it isn't part of the current live sequence.
+    -->
+    <section class="evidence-section" id="evidence" aria-labelledby="evidence-title" hidden>
+      <div class="section-heading evidence-heading">
+        <p class="beat-marker">[ 05 / EVIDENCE ]</p>
+        <h2 id="evidence-title">Selected systems.</h2>
+      </div>
+      <ul class="evidence-list">
+        <!-- populate once real, nameable work exists -->
+      </ul>
+    </section>
+
+    <section class="approach-section" id="approach" aria-labelledby="approach-title">
+      <div class="approach-intro">
+        <p class="beat-marker">[ 03 / APPROACH ]</p>
+        <h2 id="approach-title">Understand the operation. <span>Then engineer the fix.</span></h2>
+      </div>
+
+      <ol class="approach-steps">
+        <li>
+          <span class="step-number">1</span>
+          <div class="approach-step-copy"><h3>Understand</h3><p>Map the systems, decisions, handoffs, and people accountable for your business operations.</p></div>
+        </li>
+        <li>
+          <span class="step-number">2</span>
+          <div class="approach-step-copy"><h3>Design</h3><p>Define the architecture and integration points needed to close the gaps that limit the business. Use platforms where they fit, build bespoke where the business requires it.</p></div>
+        </li>
+        <li>
+          <span class="step-number">3</span>
+          <div class="approach-step-copy"><h3>Build</h3><p>Ship in vertical slices: real software and working systems.</p></div>
+        </li>
+        <li>
+          <span class="step-number">4</span>
+          <div class="approach-step-copy"><h3>Evolve</h3><p>Review how work moves, where people intervene, and what should improve or automate next.</p></div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="contact-section" id="contact" aria-labelledby="contact-title">
+      <p class="beat-marker beat-marker--convert">[ 04 / CONVERT ]</p>
+      <h2 id="contact-title">Improve your digital footprint. Let us optimise your systems.</h2>
+      <!-- Replace this placeholder with MAXAUT's confirmed scheduling URL before launch. -->
+      <a class="button button-signal" href="mailto:admin@maxaut.example?subject=MAXAUT%20discovery%20call">Book a discovery call<span aria-hidden="true">↗</span></a>
+    </section>
+
+    <!--
+      DEMONSTRATE (beat 02 in the original 8-beat scheme) retired from the live
+      page per direction change: the homepage no longer leads with the
+      interactive ERP demo, and the tightened 4-beat structure has no "prove it"
+      section for now. Kept here, intact and commented out, in case it's reused
+      later (e.g. on a dedicated ERP/service page, or revived here once there's
+      real evidence to pair with it) rather than deleted outright.
+      interactions.js's operations-demo IIFE already no-ops safely when
+      [data-operations-demo] isn't found in the DOM.
+
+    <div class="operations-demo" id="demonstrate" data-operations-demo data-active-step="0" role="group" aria-label="Interactive order-to-cash operation">
+      <p class="beat-marker" aria-hidden="true">[ 02 / DEMONSTRATE ]</p>
+      <div class="demo-toolbar">
+        <div class="demo-identity">
+          <span class="live-dot" aria-hidden="true"></span>
+          <strong>Interactive operation</strong>
+          <span>Sales order SO-10482</span>
+        </div>
+        <span class="demo-hint"><i aria-hidden="true"></i> Hover, focus, or tap a stage</span>
+      </div>
+
+      <div class="demo-field">
+        <div class="data-ribbon" aria-hidden="true">
+          <span>08:42:12 · ERP event received</span>
+          <span>Account · Standard terms</span>
+          <span>Inventory · Available</span>
+          <span>Control · Approval required</span>
+        </div>
+
+        <div class="demo-path">
+          <div class="demo-progress-track" aria-hidden="true"><span></span></div>
+          <ol class="demo-steps">
+            <li class="demo-step is-current" data-demo-step="0">
+              <button class="demo-step-button" type="button" data-demo-target="0" aria-pressed="true">
+                <span class="demo-node" aria-hidden="true"></span>
+                <span class="demo-step-copy">
+                  <span>ERP record</span>
+                  <strong>Order received</strong>
+                  <small>SO-10482</small>
+                </span>
+              </button>
+            </li>
+            <li class="demo-step" data-demo-step="1">
+              <button class="demo-step-button" type="button" data-demo-target="1" aria-pressed="false">
+                <span class="demo-node" aria-hidden="true"></span>
+                <span class="demo-step-copy">
+                  <span>Ask the system</span>
+                  <strong>Can this ship today?</strong>
+                  <small>Plain-language question</small>
+                </span>
+              </button>
+            </li>
+            <li class="demo-step" data-demo-step="2">
+              <button class="demo-step-button" type="button" data-demo-target="2" aria-pressed="false">
+                <span class="demo-node" aria-hidden="true"></span>
+                <span class="demo-step-copy">
+                  <span>Grounded answer</span>
+                  <strong>Stock ready. Approval needed.</strong>
+                  <small>ERP context connected</small>
+                </span>
+              </button>
+            </li>
+            <li class="demo-step" data-demo-step="3">
+              <button class="demo-step-button" type="button" data-demo-target="3" aria-pressed="false">
+                <span class="demo-node" aria-hidden="true"></span>
+                <span class="demo-step-copy">
+                  <span>Controlled action</span>
+                  <strong>Approval routed</strong>
+                  <small>Audit trail preserved</small>
+                </span>
+              </button>
+            </li>
+          </ol>
+        </div>
+
+        <div class="demo-readout" aria-live="off">
+          <div>
+            <span class="demo-readout-status" data-demo-status>ERP / New record</span>
+            <p data-demo-message>The ERP holds the order, account, inventory, and control data needed to answer the next question.</p>
+          </div>
+          <span class="demo-sequence" data-demo-sequence>01 / 04</span>
+        </div>
+      </div>
+    </div>
+    -->
+  </main>
+
+  <footer class="site-footer">
+    <a class="wordmark" href="#top" aria-label="MAXAUT, back to top">
+      <span class="wordmark-lead">MAX</span><strong>AUT</strong><span class="wordmark-cursor" aria-hidden="true">_</span>
+    </a>
+    <p>Systems, engineered.</p>
+    <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
+  </footer>
+</body>
+</html>
