@@ -53,18 +53,36 @@
 })();
 
 (() => {
-  const canvas = document.querySelector("[data-hero-waves]");
+  const canvas = document.querySelector("[data-substrate-waves]");
 
   if (!canvas) {
     return;
   }
 
-  const hero = canvas.closest(".hero");
   const context = canvas.getContext("2d", { alpha: true });
 
   if (!context) {
     return;
   }
+
+  // Canvas 2D can't reference CSS custom properties directly, so the signal
+  // and line colors are read once here and every rgba() derived from them,
+  // avoiding hardcoded hex values that silently go stale when the palette
+  // changes (the grid was invisible near-black-on-near-black after the dark
+  // reimagination until this read from --substrate-line instead).
+  const rootStyle = getComputedStyle(document.documentElement);
+  const hexToRgb = (hex, fallback) => {
+    const digits = hex.replace("#", "").match(/.{1,2}/g);
+    return digits ? digits.map((part) => parseInt(part, 16)) : fallback;
+  };
+
+  const signalHex = rootStyle.getPropertyValue("--signal-lime").trim() || "#c3f400";
+  const [signalR, signalG, signalB] = hexToRgb(signalHex, [195, 244, 0]);
+  const signalRgba = (alpha) => `rgba(${signalR}, ${signalG}, ${signalB}, ${alpha})`;
+
+  const lineHex = rootStyle.getPropertyValue("--substrate-line").trim() || "#9c9a93";
+  const [lineR, lineG, lineB] = hexToRgb(lineHex, [156, 154, 147]);
+  const lineRgba = (alpha) => `rgba(${lineR}, ${lineG}, ${lineB}, ${alpha})`;
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const pointer = { x: 0.58, y: 0.48, targetX: 0.58, targetY: 0.48 };
@@ -72,10 +90,20 @@
   let height = 0;
   let frame = 0;
   let lastFrame = 0;
-  let visible = true;
+  let animationStartTime = null;
   let valuePulse = null;
   let nextValuePulse = 800 + Math.random() * 900;
-  const pulseAmounts = ["+$480", "+$1,240", "+$2,680", "+$4,320", "+$8,950"];
+  // Snake trails/heads/pulse fade out over this long once the animation loop
+  // has actually started (not counting the pre-animation static frame drawn
+  // synchronously by resize()): down to nothing below 680px, down to half
+  // strength at 680px and up.
+  const SNAKE_FADE_MS = 10000;
+  const SNAKE_FADE_FLOOR_MOBILE = 0;
+  const SNAKE_FADE_FLOOR_DESKTOP = 0.3;
+  // Short technical status tokens, not currency figures. This canvas sits
+  // behind the broad POSITION claim as well as the ERP demo, and floating
+  // dollar amounts read too close to an implied (and unverified) result.
+  const pulseTokens = ["SYNCED", "LINKED", "ROUTED", "VERIFIED", "LIVE"];
 
   const resize = () => {
     const bounds = canvas.getBoundingClientRect();
@@ -140,7 +168,7 @@
     return wrapped <= 1 ? wrapped : 2 - wrapped;
   };
 
-  const drawSnakes = (points, time, rows, columns) => {
+  const drawSnakes = (points, time, rows, columns, fadeMultiplier) => {
     const seconds = time / 1000;
     const snakeHeads = [];
     const snakes = [
@@ -166,7 +194,7 @@
           context.beginPath();
           context.moveTo(previousPoint.x, previousPoint.y);
           context.lineTo(point.x, point.y);
-          context.strokeStyle = `rgba(49, 92, 255, ${0.08 + progress * 0.82})`;
+          context.strokeStyle = signalRgba((0.08 + progress * 0.82) * fadeMultiplier);
           context.lineWidth = 1 + progress * 1.8;
           context.stroke();
         }
@@ -177,11 +205,11 @@
 
       context.beginPath();
       context.arc(headPoint.x, headPoint.y, 6 + snakeIndex * 0.5, 0, Math.PI * 2);
-      context.fillStyle = "rgba(49, 92, 255, 0.13)";
+      context.fillStyle = signalRgba(0.13 * fadeMultiplier);
       context.fill();
       context.beginPath();
       context.arc(headPoint.x, headPoint.y, 2.2, 0, Math.PI * 2);
-      context.fillStyle = "rgba(49, 92, 255, 0.95)";
+      context.fillStyle = signalRgba(0.95 * fadeMultiplier);
       context.fill();
       snakeHeads[snakeIndex] = headPoint;
     });
@@ -189,7 +217,7 @@
     if (!reducedMotion && !valuePulse && time >= nextValuePulse) {
       valuePulse = {
         snakeIndex: Math.floor(Math.random() * snakeHeads.length),
-        amount: pulseAmounts[Math.floor(Math.random() * pulseAmounts.length)],
+        token: pulseTokens[Math.floor(Math.random() * pulseTokens.length)],
         startedAt: time
       };
     }
@@ -202,21 +230,21 @@
     const progress = Math.min(1, (time - valuePulse.startedAt) / duration);
     const head = snakeHeads[valuePulse.snakeIndex];
     const pulse = Math.sin(progress * Math.PI);
-    const fade = 1 - Math.pow(progress, 1.7);
+    const fade = (1 - Math.pow(progress, 1.7)) * fadeMultiplier;
 
     context.beginPath();
     context.arc(head.x, head.y, 7 + pulse * 13, 0, Math.PI * 2);
-    context.strokeStyle = `rgba(49, 92, 255, ${fade * 0.58})`;
+    context.strokeStyle = signalRgba(fade * 0.58);
     context.lineWidth = 1.5 + pulse * 1.5;
     context.stroke();
 
     context.save();
     context.globalAlpha = fade;
-    context.fillStyle = "#315cff";
-    context.font = "650 13px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
+    context.fillStyle = signalHex;
+    context.font = "500 12px 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace";
     context.textAlign = "center";
     context.textBaseline = "bottom";
-    context.fillText(valuePulse.amount, head.x, head.y - 17 - progress * 38);
+    context.fillText(valuePulse.token, head.x, head.y - 17 - progress * 38);
     context.restore();
 
     if (progress >= 1) {
@@ -242,7 +270,7 @@
         if (rowIndex === 0) context.moveTo(point.x, point.y);
         else context.lineTo(point.x, point.y);
       });
-      context.strokeStyle = "rgba(24, 24, 23, 0.1)";
+      context.strokeStyle = lineRgba(0.1);
       context.lineWidth = 1;
       context.stroke();
     }
@@ -254,19 +282,30 @@
         if (columnIndex === 0) context.moveTo(point.x, point.y);
         else context.lineTo(point.x, point.y);
       });
-      context.strokeStyle = `rgba(24, 24, 23, ${0.085 + depth * 0.16})`;
+      context.strokeStyle = lineRgba(0.085 + depth * 0.16);
       context.lineWidth = 0.75 + depth * 0.75;
       context.stroke();
     });
 
-    drawSnakes(points, time, rows, columns);
+    const fadeFloor = width < 680 ? SNAKE_FADE_FLOOR_MOBILE : SNAKE_FADE_FLOOR_DESKTOP;
+    const elapsed = animationStartTime === null ? 0 : time - animationStartTime;
+    const fadeProgress = Math.min(1, elapsed / SNAKE_FADE_MS);
+    const fadeMultiplier = 1 - fadeProgress * (1 - fadeFloor);
+
+    if (fadeMultiplier > 0) {
+      drawSnakes(points, time, rows, columns, fadeMultiplier);
+    }
   }
 
   const animate = (time) => {
     frame = window.requestAnimationFrame(animate);
 
-    if (!visible || document.hidden || time - lastFrame < 32) {
+    if (document.hidden || time - lastFrame < 32) {
       return;
+    }
+
+    if (animationStartTime === null) {
+      animationStartTime = time;
     }
 
     lastFrame = time;
@@ -275,175 +314,18 @@
     draw(time);
   };
 
-  hero.addEventListener("pointermove", (event) => {
-    const bounds = hero.getBoundingClientRect();
-    pointer.targetX = (event.clientX - bounds.left) / bounds.width;
-    pointer.targetY = (event.clientY - bounds.top) / bounds.height;
+  window.addEventListener("pointermove", (event) => {
+    pointer.targetX = event.clientX / window.innerWidth;
+    pointer.targetY = event.clientY / window.innerHeight;
   });
 
-  hero.addEventListener("pointerleave", () => {
+  document.documentElement.addEventListener("pointerleave", () => {
     pointer.targetX = 0.58;
     pointer.targetY = 0.48;
   });
 
-  if ("ResizeObserver" in window) {
-    new ResizeObserver(resize).observe(hero);
-  } else {
-    window.addEventListener("resize", resize);
-  }
-
-  if ("IntersectionObserver" in window) {
-    new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting;
-    }, { threshold: 0.05 }).observe(hero);
-  }
+  window.addEventListener("resize", resize);
 
   resize();
   if (!reducedMotion) frame = window.requestAnimationFrame(animate);
-})();
-
-(() => {
-  const explorer = document.querySelector("[data-workflow-explorer]");
-
-  if (!explorer) {
-    return;
-  }
-
-  const workflows = {
-    order: {
-      label: "Order-to-cash",
-      steps: [
-        { kind: "ERP event", time: "08:42", title: "Order received", summary: "The ERP records the transaction and anchors every following step.", owner: "ERP", input: "Sales order, customer account, and requested delivery date", agent: "Wait for a validated ERP event before assembling context", control: "Standard ERP validation and ownership rules", writeback: "New order record with its workflow state" },
-        { kind: "Agent action", time: "08:42", title: "Context connected", summary: "The agent connects stock, account, pricing, and delivery context around the order.", owner: "Agent", input: "Available stock, account terms, pricing, and delivery context", agent: "Connect the evidence and check it against the operating rules", control: "Confidence threshold and exception boundaries", writeback: "Prepared context attached to the order flow" },
-        { kind: "Control point", time: "08:44", title: "Exception routed", summary: "A margin exception goes to the accountable person with the relevant evidence attached.", owner: "Human", input: "Margin exception, commercial context, and recommended action", agent: "Route the exception with a concise decision brief", control: "Named approver accepts, changes, or rejects the recommendation", writeback: "Approval decision and rationale recorded" },
-        { kind: "ERP update", time: "08:51", title: "Record advanced", summary: "The approved decision returns to the ERP, preserving the operational audit trail.", owner: "ERP", input: "Approved decision and downstream routing instruction", agent: "Monitor completion and surface any failed handoff", control: "ERP permissions and immutable audit history", writeback: "Released order and next workflow state" }
-      ]
-    },
-    procure: {
-      label: "Procure-to-pay",
-      steps: [
-        { kind: "ERP event", time: "09:10", title: "Requisition raised", summary: "A purchase need enters the ERP with its requester, category, and required date.", owner: "ERP", input: "Requisition, cost centre, category, and required date", agent: "Wait for a complete and validated request", control: "Budget ownership and request completeness", writeback: "New requisition awaiting context" },
-        { kind: "Agent action", time: "09:11", title: "Supplier context checked", summary: "Supplier, contract, price, and delivery context are assembled for the request.", owner: "Agent", input: "Approved suppliers, contracts, price history, and delivery performance", agent: "Compare the request with available commercial context", control: "Approved-source policy and comparison threshold", writeback: "Supplier context attached to the requisition" },
-        { kind: "Control point", time: "09:16", title: "Exception approved", summary: "A price or supplier exception reaches the right budget owner with supporting evidence.", owner: "Human", input: "Exception type, alternatives, and financial impact", agent: "Prepare the exception and route it to the accountable owner", control: "Budget owner approval and procurement policy", writeback: "Decision and conditions recorded" },
-        { kind: "ERP update", time: "09:24", title: "Purchase order released", summary: "The approved request becomes a controlled purchase order in the ERP.", owner: "ERP", input: "Approved supplier, terms, quantity, and delivery instruction", agent: "Confirm that the order was created and routed", control: "ERP release permissions and audit trail", writeback: "Released purchase order" }
-      ]
-    },
-    service: {
-      label: "Service-to-cash",
-      steps: [
-        { kind: "ERP event", time: "10:03", title: "Service case logged", summary: "A customer request enters the service workflow with its account and reported issue.", owner: "ERP", input: "Customer, asset, service request, and reported priority", agent: "Check that the case has enough context to proceed", control: "Case ownership and service entitlement", writeback: "New service case" },
-        { kind: "Agent action", time: "10:04", title: "History assembled", summary: "Entitlement, asset history, previous cases, and available skills are brought together.", owner: "Agent", input: "Contract entitlement, asset history, case history, and team capacity", agent: "Assemble the service context and identify likely routing", control: "Entitlement rules and confidence threshold", writeback: "Prepared context and routing suggestion" },
-        { kind: "Control point", time: "10:08", title: "Priority confirmed", summary: "A service owner confirms the priority where evidence or entitlement is ambiguous.", owner: "Human", input: "Impact, entitlement, history, and recommended priority", agent: "Present the evidence and explain the routing recommendation", control: "Service owner confirms priority and response path", writeback: "Confirmed priority and owner" },
-        { kind: "ERP update", time: "10:12", title: "Work order scheduled", summary: "The agreed action becomes a scheduled work order with clear ownership.", owner: "ERP", input: "Priority, owner, skill requirement, and target response", agent: "Monitor scheduling and flag unresolved dependencies", control: "Scheduling rules and resource permissions", writeback: "Scheduled work order" }
-      ]
-    },
-    close: {
-      label: "Month-end close",
-      steps: [
-        { kind: "ERP event", time: "17:00", title: "Close task opened", summary: "The ERP opens the period-close task with its ledger and reconciliation state.", owner: "ERP", input: "Ledger status, close checklist, and outstanding reconciliations", agent: "Confirm the required close data is available", control: "Finance ownership and close calendar", writeback: "Open close task" },
-        { kind: "Agent action", time: "17:03", title: "Variances investigated", summary: "Material variances and incomplete reconciliations are assembled with likely causes.", owner: "Agent", input: "Ledger movements, prior period, reconciliations, and thresholds", agent: "Group exceptions and prepare supporting evidence", control: "Materiality threshold and evidence requirements", writeback: "Variance investigation attached to the close task" },
-        { kind: "Control point", time: "17:18", title: "Journal approved", summary: "Finance reviews the proposed treatment and approves or changes the journal.", owner: "Human", input: "Variance evidence, proposed journal, and financial impact", agent: "Explain the proposed treatment and route it to the approver", control: "Segregation of duties and named journal approval", writeback: "Approved journal and rationale" },
-        { kind: "ERP update", time: "17:26", title: "Period advanced", summary: "The approved update returns to the ERP and the close checklist advances.", owner: "ERP", input: "Approved journal and completed control evidence", agent: "Verify posting and surface any remaining blocker", control: "Posting permissions and close audit trail", writeback: "Posted journal and updated close state" }
-      ]
-    }
-  };
-
-  const tabs = [...explorer.querySelectorAll("[data-workflow-key]")];
-  const tabList = explorer.querySelector("[data-workflow-tabs]");
-  const staticTitle = explorer.querySelector("[data-workflow-static-title]");
-  const panel = explorer.querySelector("[data-workflow-panel]");
-  const stepItems = [...explorer.querySelectorAll("[data-workflow-step-item]")];
-  const stepButtons = [...explorer.querySelectorAll("[data-workflow-step]")];
-  const detail = explorer.querySelector("[data-workflow-detail]");
-  let activeWorkflow = "order";
-  let activeStep = 0;
-  let detailTimer = 0;
-
-  const setText = (selector, value, root = explorer) => {
-    root.querySelector(selector).textContent = value;
-  };
-
-  const renderDetail = (stepIndex) => {
-    const step = workflows[activeWorkflow].steps[stepIndex];
-    window.clearTimeout(detailTimer);
-    detail.classList.add("is-changing");
-
-    detailTimer = window.setTimeout(() => {
-      setText("[data-detail-index]", `Selected stage ${String(stepIndex + 1).padStart(2, "0")}`);
-      setText("[data-detail-title]", step.title);
-      setText("[data-detail-summary]", step.summary);
-      setText("[data-detail-input]", step.input);
-      setText("[data-detail-agent]", step.agent);
-      setText("[data-detail-control]", step.control);
-      setText("[data-detail-writeback]", step.writeback);
-      detail.classList.remove("is-changing");
-    }, 140);
-  };
-
-  const selectStep = (stepIndex) => {
-    activeStep = stepIndex;
-    explorer.dataset.activeStep = String(stepIndex);
-
-    stepItems.forEach((item, index) => {
-      item.classList.toggle("is-current", index === stepIndex);
-      item.classList.toggle("is-complete", index < stepIndex);
-      stepButtons[index].setAttribute("aria-pressed", String(index === stepIndex));
-    });
-
-    renderDetail(stepIndex);
-  };
-
-  const renderWorkflow = (key) => {
-    activeWorkflow = key;
-    const workflow = workflows[key];
-
-    workflow.steps.forEach((step, index) => {
-      const button = stepButtons[index];
-      setText("[data-step-kind]", step.kind, button);
-      setText("[data-step-time]", step.time, button);
-      setText("[data-step-title]", step.title, button);
-      setText("[data-step-summary]", step.summary, button);
-      setText("[data-step-owner]", step.owner, button);
-      button.querySelector("[data-step-owner]").classList.toggle("owner-blue", step.owner === "Agent");
-    });
-
-    tabs.forEach((tab) => {
-      const selected = tab.dataset.workflowKey === key;
-      tab.setAttribute("aria-selected", String(selected));
-      tab.tabIndex = selected ? 0 : -1;
-    });
-
-    const activeTab = tabs.find((tab) => tab.dataset.workflowKey === key);
-    panel.setAttribute("aria-labelledby", activeTab.id);
-    selectStep(0);
-  };
-
-  tabList.hidden = false;
-  staticTitle.hidden = true;
-  stepButtons.forEach((button) => {
-    button.disabled = false;
-    button.addEventListener("click", () => selectStep(Number(button.dataset.workflowStep)));
-  });
-
-  tabs.forEach((tab, index) => {
-    tab.addEventListener("click", () => renderWorkflow(tab.dataset.workflowKey));
-    tab.addEventListener("keydown", (event) => {
-      if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) {
-        return;
-      }
-
-      event.preventDefault();
-      let nextIndex = index;
-
-      if (event.key === "ArrowRight") nextIndex = (index + 1) % tabs.length;
-      if (event.key === "ArrowLeft") nextIndex = (index - 1 + tabs.length) % tabs.length;
-      if (event.key === "Home") nextIndex = 0;
-      if (event.key === "End") nextIndex = tabs.length - 1;
-
-      tabs[nextIndex].focus();
-      renderWorkflow(tabs[nextIndex].dataset.workflowKey);
-    });
-  });
-
-  renderWorkflow(activeWorkflow);
 })();
